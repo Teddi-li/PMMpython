@@ -1,22 +1,19 @@
-name = input("What is your name? ")
-age = input("How old are you? ")
-age = int(age)
-weight = input("What is your weight in kg? ")
-weight = float(weight)
-height = input("What is your height in cm? ")
-height = float(height) / 100  
-mbi = (weight / (height ** 2)) 
-normal_weight_mbi = 24.9
-under_weight_mbi = 18.5
-over_weight_mbi = 29.9
-def mbi_category(mbi):
-    if mbi < under_weight_mbi:
-        return "underweight"
-    elif under_weight_mbi <= mbi < normal_weight_mbi:
-        return "normal weight"
-    elif normal_weight_mbi <= mbi < over_weight_mbi:
-        return "overweight"
+
+import sys
+
+password="mypwd123"
+attempts=0
+max_attempts=3
+while attempts < max_attempts:
+    user_input = input("Enter the password: ").strip()
+    attempts += 1
+    if user_input == password:
+        print("welcome!!!")
+        break
     else:
-        return "dangerously overweight"
-print("Hello,", name + "! You are", age, "years old.")
-print(f"Your  MBI is {mbi:.1f} you are {mbi_category(mbi)}")
+        print("Incorrect password. Try again.")
+
+    if attempts == max_attempts:
+        print("your account is locked try after 24 hrs.")
+        break
+
