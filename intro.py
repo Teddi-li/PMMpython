@@ -1,12 +1,13 @@
-from datetime import datetime
-now = datetime.now()
-h = input("Enter hour (0–23, Enter = now): ").strip()
-m = input("Enter minute (0–59, Enter = now): ").strip()
+import json
 
-if h == "" or m == "":
-    hour, minute = now.hour, now.minute   # use local time if blank
-else:
-    hour = int(h)                         # convert after blank check
-    minute = int(m)
+settings = {"theme": "dark",
+            "language": "en",
+            "volume": 70}
 
-print("Good morning!" if hour < 12 else "Good evening!")
+with open("settings.json", "w", encoding="utf-8") as f:
+    json.dump(settings, f, ensure_ascii=False, indent=2)
+
+with open("settings.json", "r", encoding="utf-8") as f:
+    loaded = json.load(f)
+
+print("Loaded:", loaded)
