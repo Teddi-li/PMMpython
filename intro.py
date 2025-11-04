@@ -1,38 +1,12 @@
-def add(a, b):  return a + b
-def sub(a, b):  return a - b
-def mul(a, b):  return a * b
+from datetime import datetime
+now = datetime.now()
+h = input("Enter hour (0–23, Enter = now): ").strip()
+m = input("Enter minute (0–59, Enter = now): ").strip()
 
-def div(a, b):
-    if b == 0:
-        raise ZeroDivisionError("Cannot divide by zero.")
-    return a / b
+if h == "" or m == "":
+    hour, minute = now.hour, now.minute   # use local time if blank
+else:
+    hour = int(h)                         # convert after blank check
+    minute = int(m)
 
-def mod(a, b):
-    if b == 0:
-        raise ZeroDivisionError("Cannot mod by zero.")
-    return a % b
-
-def power(a, b):  return a ** b
-
-ops = {"+": add, "-": sub, "*": mul, "/": div, "%": mod, "^": power}
-
-print("=== Function-Based Calculator ===")
-while True:
-    keeptry = input("Do you want to try a calculation? (Y/N): ").strip().lower()
-    if keeptry != "y":
-        print("Thanks for using the calculator.")
-        break
-
-    print("Available: +  -  *  /  %  ^")
-    userinput = input("Which operation? : ").strip()
-    if userinput not in ops:
-        print("Invalid operation.")
-        continue
-
-    a = float(input("Enter first number: "))
-    b = float(input("Enter second number: "))
-    try:
-        result = ops[userinput](a, b)
-        print(f"{a} {userinput} {b} = {result}")
-    except ZeroDivisionError as e:
-        print("Error:", e)
+print("Good morning!" if hour < 12 else "Good evening!")
