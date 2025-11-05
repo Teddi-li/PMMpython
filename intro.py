@@ -1,12 +1,15 @@
-class manager:
-    def salary(self):
-        print("this is your slaray for the month and keep trying!!!")
-class employee(manager):
-    def salary(self):
-        print("is this all??")
+# console_notepad.py
+from pathlib import Path
 
-a=manager()
-b=employee()
- 
-a.salary()
-b.salary()
+fname = input("File name (Enter=notes.txt): ").strip() 
+print("Type your notes. Type ::end on its own line to finish.\n")
+
+lines = []
+while True:
+    line = input()
+    if line.strip() == "::":
+        break
+    lines.append(line + "\n")
+
+Path(fname).write_text("".join(lines), encoding="utf-8")
+print(f"Saved to {Path(fname).resolve()}")
